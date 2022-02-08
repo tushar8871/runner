@@ -10,14 +10,14 @@ phases:
     commands:
       - echo Build started on date
       - echo Building the Docker image...
-      - docker build -t  gaia-runner:v1 .
-      - docker tag gaia-runner:v1 $REPOSITORY_URI1:latest
+      - docker build -t gaia-runner .
+      - docker tag gaia-runner:latest $REPOSITORY_URI1:runner-1
   post_build:
     commands:
       - echo Build completed on date
       - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI1:latest
-      - printf '[{"name":"gaia-runner","imageUri":"764057086582.dkr.ecr.ap-south-1.amazonaws.com/gaia-runner-app-demo:latest"}]' >> imagedefinitions.json
+      - docker push $REPOSITORY_URI1:runner-1
+      - printf '[{"name":"gaia-runner","imageUri":"764057086582.dkr.ecr.ap-south-1.amazonaws.com/gaia-runner-app-demo:runner-1"}]' >> imagedefinitions.json
       - cat imagedefinitions.json 
 artifacts:
     files: imagedefinitions.json
