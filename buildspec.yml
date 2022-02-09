@@ -4,8 +4,8 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 764057086582.dkr.ecr.ap-south-1.amazonaws.com
-      - REPOSITORY_URI1=764057086582.dkr.ecr.ap-south-1.amazonaws.com/gaia-runner
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 619942913628.dkr.ecr.us-east-1.amazonaws.com
+      - REPOSITORY_URI1=619942913628.dkr.ecr.us-east-1.amazonaws.com/gaia-runner
   build:
     commands:
       - echo Build started on $(date)
@@ -16,8 +16,8 @@ phases:
     commands:
       - echo Build completed on date
       - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI1:runner1
-      - printf '[{"name":"gaia-runner","imageUri":"764057086582.dkr.ecr.ap-south-1.amazonaws.com/gaia-runner:runner1"}]' >> imagedefinitions.json
+      - docker push $REPOSITORY_URI1:runner
+      - printf '[{"name":"gaia-runner","imageUri":"619942913628.dkr.ecr.us-east-1.amazonaws.com/gaia-runner:runner"}]' >> imagedefinitions.json
       - cat imagedefinitions.json 
 artifacts:
     files: imagedefinitions.json
