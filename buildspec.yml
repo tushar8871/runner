@@ -9,7 +9,6 @@ phases:
   build:
     commands:
       - echo Build started on $(date)
-      - echo Whyyyy!!!
       - echo Building the Docker image...
       - docker build -t gaia-runner .
       - docker tag gaia-runner:latest $REPOSITORY_URI1:runner-1
